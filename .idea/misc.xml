@@ -3,12 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/drawable/bg_circle.xml" value="0.124" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/drawable/bg_rounded_rect.xml" value="0.1555" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/drawable/bg_triangel.xml" value="0.1555" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/drawable/ic_date_24.xml" value="0.1535" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/activity_register.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/activity_splash_screen.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/recyclerview_item.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/camera_main.xml" value="0.2076923076923077" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/layout_tooltip.xml" value="0.11197916666666667" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/map.xml" value="0.11197916666666667" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/radio_button.xml" value="0.253125" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/layout/recyclerview_item.xml" value="0.264" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/PenyewaanKendaraan2/app/src/main/res/menu/menu.xml" value="0.253125" />
       </map>
     </option>
   </component>

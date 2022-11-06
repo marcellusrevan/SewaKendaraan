@@ -7,11 +7,18 @@ import android.view.View
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.textfield.TextInputLayout
+import com.test.penyewaankendaraan.room.User
+import com.test.penyewaankendaraan.room.UserDB
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var inputUsername: TextInputLayout
     private lateinit var inputPassword: TextInputLayout
     private lateinit var mainLayout: ConstraintLayout
+    lateinit var usernameDB:String
+    lateinit var passwordDB:String
+    val db by lazy { UserDB( this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
 
         btnRegister.setOnClickListener {
+
             val moveRegister = Intent( this@MainActivity, RegisterActivity::class.java)
             startActivity(moveRegister)
         }
@@ -35,7 +43,30 @@ class MainActivity : AppCompatActivity() {
             var checkLogin = false
             val username: String = inputUsername.getEditText()?.getText().toString()
             val password: String = inputPassword.getEditText()?.getText().toString()
-
+            runBlocking() {
+                val username = async {
+                    val account:User?=db.noteDao().getLogin(inputUsername.getEditText()?.getText().toString(),
+                        inputPassword.getEditText()?.getText().toString())
+                    if(account!=null){
+                        account.username
+                    }
+                    else{
+                        null
+                    }
+                }
+                val password = async {
+                    val account:User?=db.noteDao().getLogin(inputUsername.getEditText()?.getText().toString(),
+                        inputPassword.getEditText()?.getText().toString())
+                    if(account!=null){
+                        account.password
+                    }
+                    else{
+                        null
+                    }
+                }
+                usernameDB = username.await().toString()
+                passwordDB = password.await().toString()
+            }
 
             if(username.isEmpty()){
                 inputUsername.setError("Username must be filled with text")
@@ -47,9 +78,9 @@ class MainActivity : AppCompatActivity() {
                 checkLogin=false
             }
 
-            if(username == "admin"&& password== "0944") checkLogin=true
+            if(username == usernameDB&& password== passwordDB) checkLogin=true
             if(!checkLogin)return@OnClickListener
-            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
+            val moveHome = Intent(this@MainActivity, ButtonHome::class.java)
             startActivity(moveHome)
         })
 

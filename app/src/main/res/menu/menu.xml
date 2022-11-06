@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mobil"
+        android:title="Sewa"
+        android:icon="@drawable/ic_baseline_directions_car_24" />
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_person_24"/>
+    <item
+        android:id="@+id/transaksi"
+        android:title="Transaksi"
+        android:icon="@drawable/ic_baseline_description_24"/>
+    <item
+        android:id="@+id/map"
+        android:title="Lokasi"
+        android:icon="@drawable/ic_baseline_location_on_24"/>
+
+    <item
+        android:id="@+id/exit"
+        android:title="Exit"
+        android:icon="@drawable/ic_baseline_exit_to_app_24" />
+
+
+</menu>

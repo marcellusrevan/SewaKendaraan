@@ -3,8 +3,18 @@ package com.test.penyewaankendaraan
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.view.View
 import android.widget.Button
 import com.google.android.material.textfield.TextInputLayout
+import com.test.penyewaankendaraan.databinding.ActivityRegisterBinding
+import com.test.penyewaankendaraan.databinding.RecyclerviewItemBinding
+import com.test.penyewaankendaraan.room.User
+import com.test.penyewaankendaraan.room.UserDB
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var inputEmail: TextInputLayout
@@ -13,57 +23,75 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var inputTangalLahir: TextInputLayout
     private lateinit var inputNomorTelepon: TextInputLayout
     private lateinit var btnRegister: Button
+    private lateinit var itemBinding: ActivityRegisterBinding
+    val db by lazy { UserDB( this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        itemBinding=ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(itemBinding.root)
 
+        val view=itemBinding.root
         setTitle("Registration")
 
-        inputUsername = findViewById(R.id.ilUsername)
-        inputPassword = findViewById(R.id.ilPassword)
-        inputEmail= findViewById(R.id.ilEmail)
-        inputTangalLahir = findViewById(R.id.ilTanggalLahir)
-        inputNomorTelepon = findViewById(R.id.ilNomorTelepon)
+        inputUsername = itemBinding.ilUsername
+        inputPassword = itemBinding.ilPassword
+        inputEmail= itemBinding.ilEmail
+        inputTangalLahir = itemBinding.ilTanggalLahir
+        inputNomorTelepon = itemBinding.ilNomorTelepon
 
         btnRegister = findViewById(R.id.btnRegister)
 
-        btnRegister.setOnClickListener {
-            var checkLogin = false
-            val username: String = inputUsername.getEditText()?.getText().toString()
-            val password: String = inputPassword.getEditText()?.getText().toString()
-            val email: String = inputEmail.getEditText()?.getText().toString()
-            val tangalLahir: String = inputTangalLahir.getEditText()?.getText().toString()
-            val nomorTelepon: String = inputNomorTelepon.getEditText()?.getText().toString()
+        itemBinding.btnRegister.setOnClickListener(View.OnClickListener {
+            val intent=Intent(this,MainActivity::class.java)
+            var checkLogin = true
+            val username: String = inputUsername.editText?.getText().toString()
+            val password: String = inputPassword.editText?.getText().toString()
+            val email: String = inputEmail.editText?.getText().toString()
+            val tangalLahir: String = inputTangalLahir.editText?.getText().toString()
+            val nomorTelepon: String = inputNomorTelepon.editText?.getText().toString()
+
+
 
 
             if(username.isEmpty()){
-                inputUsername.setError("Username must be filled with text")
+                itemBinding.ilUsername.setError("Username must be filled with text")
                 checkLogin =false
 
             }
             if(password.isEmpty()){
-                inputPassword.setError("Password must be filled with text")
+                itemBinding.ilPassword.setError("Password must be filled with text")
                 checkLogin =false
             }
 
             if(email.isEmpty()){
-                inputEmail.setError("Email must be filled with text")
+                itemBinding.ilEmail.setError("Email must be filled with text")
                 checkLogin =false
             }
 
             if(tangalLahir.isEmpty()){
-                inputTangalLahir.setError("Tanggal Lahir must be filled with text")
+                itemBinding.ilTanggalLahir.setError("Tanggal Lahir must be filled with text")
                 checkLogin =false
             }
 
             if(nomorTelepon.isEmpty()) {
-                inputNomorTelepon.setError("Nomor Telepon must be filled with text")
+                itemBinding.ilNomorTelepon.setError("Nomor Telepon must be filled with text")
                 checkLogin = false
             }
-            if(!checkLogin)return@setOnClickListener
+
+            if(!checkLogin)return@OnClickListener
+            CoroutineScope(Dispatchers.IO).launch {
+                db.noteDao().addUser(
+                    User(0,inputUsername.getEditText()?.getText().toString(),
+                        inputPassword.getEditText()?.getText().toString(),
+                        inputEmail.getEditText()?.getText().toString(),
+                        inputTangalLahir.getEditText()?.getText().toString(),
+                        inputNomorTelepon.getEditText()?.getText().toString(),)
+                )
+                finish()
+            }
             val moveLogin = Intent( this@RegisterActivity, MainActivity::class.java)
             startActivity(moveLogin)
-        }
+        })
     }
 }

@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.844135,
+          "lng": 110.304578
+        }
+      },
+      "name": "Penyewaan Kendaraaan Pusat",
+      "vicinity": "Kasihan, Kalirandu, Bangunjiwo, Kec. Kasihan, Kabupaten Bantul, Daerah Istimewa Yogyakarta 55184"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.779055325789016,
+          "lng": 110.41504430555236
+        }
+      },
+      "name": "Penyewaan Kendaraan Cabang 1",
+      "vicinity": "Jl. Babarsari No.44, Janti, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281"
+    }
+
+  ],
+  "status": "OK"
+}
